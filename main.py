@@ -1,5 +1,7 @@
 from Controller.switch_stats import *
 from Controller.onos import *
+from KMean.kmean import *
+import time
 
 
 def main():
@@ -12,6 +14,17 @@ def main():
         s = SwitchStats(i)
         onos.get_switch_stats(s)
         switches.append(s)
+
+    while True:
+        for s in switches:
+            onos.get_switch_stats(s)
+            for f in s.stats['flows']:
+                if f['appId'] == 'org.onosproject.fwd':
+                    count = f['packets']
+                    src = f['selector']['criteria'][2]['mac']
+                    dst = f['selector']['criteria'][1]['mac']
+                    print("{} {} {}".format(src, dst, count))
+    time.sleep(1)
 
 
 if __name__ == "__main__":

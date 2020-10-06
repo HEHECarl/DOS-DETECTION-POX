@@ -11,8 +11,9 @@ class Onos:
     def get_all_switch_id(self):
         request = self.address + "devices"
         res = requests.get(url=request, auth=(self.username, self.password)).json()
-
-        ids_list = (i['devices'] for i in res)
+        ids_list = []
+        for i in res['devices']:
+            ids_list.append(i['id'])
 
         return ids_list
 

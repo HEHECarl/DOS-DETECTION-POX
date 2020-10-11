@@ -9,6 +9,7 @@ MESSAGE = "HELLO,WORLD"
 def normal_client(address, frequency):
     add = (address, PORT)
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.settimeout(10)
     while True:
         start = time.time()
         s.sendto(MESSAGE.encode(), add)

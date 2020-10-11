@@ -1,4 +1,5 @@
 import requests
+import json
 from Controller.switch_stats import *
 
 
@@ -21,3 +22,14 @@ class Onos:
         request = self.address + "flows/" + switch_stats.id
         response = requests.get(url=request, auth=(self.username, self.password)).json()
         switch_stats.stats = response
+
+    def deny_host(self, src, dst):
+        f = open("deny.jason")
+        data = json.load(f)
+        data["selector"]["criteria"][0]["mac"] = src
+        data["selector"]["criteria"][1]["mac"] = dst
+        ids_list = self.get_all_switch_id()
+        for id in ids_list:
+            request = self.address + "flows/" + id
+            requests.post(url=request, json=data, auth=(self.username, self.password))
+        print("Installed rules on switches to block connection from {} to {}".format(src, dst))

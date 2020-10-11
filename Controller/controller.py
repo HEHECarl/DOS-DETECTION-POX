@@ -72,8 +72,10 @@ class Controller:
                         if is_attacker:
                             if src_dst_count >= dst_src_count:
                                 print("Attack Found at {} targeting {}".format(key_src, key_dst))
+                                self.onos.deny_host(key_src, key_dst)
                             else:
                                 print("Attack Found at {} targeting {}".format(key_dst, key_src))
+                                self.onos.deny_host(key_dst, key_src)
                     except:
                         print("Error\n")
 

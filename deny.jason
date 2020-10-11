@@ -1,0 +1,26 @@
+{
+  "appId": 10,
+  "priority": 65535,
+  "isPermanent": false,
+  "timeout": 10,
+  "treatment": {
+    "instructions": [
+      {
+        "type": "OUTPUT",
+        "port": 100
+      }
+    ]
+  },
+  "selector": {
+    "criteria": [
+      {
+        "type": "ETH_SRC",
+        "mac": "00:00:00:00:00:01"
+      },
+      {
+        "type": "ETH_DST",
+        "mac": "00:00:00:00:00:01"
+      }
+    ]
+  }
+}

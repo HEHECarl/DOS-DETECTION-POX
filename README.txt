@@ -8,7 +8,6 @@ The following library need to be installed with latest version before lunching t
 -requests
 -json
 
-This repo is built for COMS4200 Group 7 2020 Semester 2
 This program is able to collect data from all the switches in the network, and analysis with a KNN Model,
 the knn model will identify weather a host is a DoS attacker or just normal user
 Once a attacker is found, the program will install a blocking rule on all switches to mitigate the DoS attack.
